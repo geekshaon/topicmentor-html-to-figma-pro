@@ -66,7 +66,7 @@ interface Ctx {
   font: (r: Run) => FontName;
 }
 
-figma.showUI(__html__, { width: 360, height: 600, themeColors: true });
+figma.showUI(__html__, { width: 360, height: 615, themeColors: true });
 
 figma.ui.onmessage = async (msg: {
   type: string;
@@ -93,14 +93,14 @@ figma.ui.onmessage = async (msg: {
     let root = build(msg.tree, null, ctx) as FrameNode | ComponentNode;
     const size = msg.viewportHeight ? `${msg.viewportWidth}×${msg.viewportHeight}px` : `${msg.viewportWidth}px`;
     const suffix = msg.viewportWidth ? ` · ${size}` : '';
-    root.name = (msg.sourceName || 'HTML Import') + suffix;
+    root.name = (msg.sourceName || 'TopicMentor Import') + suffix;
     const center = figma.viewport.center;
     root.x = Math.round(center.x - root.width / 2);
     root.y = Math.round(center.y - root.height / 2);
     figma.currentPage.appendChild(root);
     if (msg.asComponent) {
       root = figma.createComponentFromNode(root);
-      root.name = (msg.sourceName || 'HTML Component') + suffix;
+      root.name = (msg.sourceName || 'TopicMentor Component') + suffix;
     }
     const styles = await linkColorStyles(root);
     figma.currentPage.selection = [root];
@@ -471,7 +471,7 @@ async function linkColorStyles(root: SceneNode): Promise<number> {
   const existing = new Map<string, string>();
   for (const s of await figma.getLocalPaintStylesAsync()) {
     const p = s.paints[0];
-    if (s.name.startsWith('HTML/') && s.paints.length === 1 && p.type === 'SOLID')
+    if ((s.name.startsWith('TopicMentor/') || s.name.startsWith('HTML/')) && s.paints.length === 1 && p.type === 'SOLID')
       existing.set(colorKey(p.color, p.opacity === undefined ? 1 : p.opacity), s.id);
   }
   // Most-used first, capped so imports don't flood the file with near-duplicate styles.
@@ -483,7 +483,7 @@ async function linkColorStyles(root: SceneNode): Promise<number> {
     let id = existing.get(key);
     if (!id) {
       const style = figma.createPaintStyle();
-      style.name = 'HTML/' + rgbToHex(use.color) + (use.opacity < 0.999 ? ` @${Math.round(use.opacity * 100)}%` : '');
+      style.name = 'TopicMentor/' + rgbToHex(use.color) + (use.opacity < 0.999 ? ` @${Math.round(use.opacity * 100)}%` : '');
       style.paints = [{ type: 'SOLID', color: use.color, opacity: use.opacity }];
       id = style.id;
     }

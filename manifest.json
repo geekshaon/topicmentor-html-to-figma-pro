@@ -1,13 +1,13 @@
 {
-  "name": "Open HTML to Figma",
-  "id": "1686625740123785157",
+  "name": "TopicMentor HTML to Figma — Pro Dev Tools",
+  "id": "topicmentor-html-to-figma-pro",
   "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html",
   "editorType": ["figma"],
   "networkAccess": {
     "allowedDomains": ["*"],
-    "reasoning": "The plugin renders the user's own HTML exactly like a browser would, so it must load whatever that page references: stylesheets and scripts from CDNs (Tailwind, Bootstrap, Font Awesome), web fonts (Google Fonts and others) and images from any host. Nothing is sent anywhere except the requests the page itself makes."
+    "reasoning": "The plugin renders the user's HTML exactly like a browser would, so it must load whatever that page references: stylesheets, web fonts (Google Fonts and others), CDNs, and images."
   },
   "documentAccess": "dynamic-page"
 }

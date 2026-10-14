@@ -1,127 +1,157 @@
 <p align="center">
-  <img src="docs/logo.svg" width="112" alt="Open HTML to Figma mascot" />
+  <img src="docs/logo.svg" width="100" alt="TopicMentor Mascot Logo" />
 </p>
 
-<h1 align="center">Open HTML to Figma</h1>
+<h1 align="center">TopicMentor HTML to Figma — Pro Dev Tools</h1>
 
 <p align="center">
-  Turn a <b>local HTML file</b> into editable Figma layers that match what the browser renders.<br />
-  Free and open source. No account, no subscription, no URL crawling.
-</p>
-
-<p align="center">
-  <a href="https://www.figma.com/community/plugin/1686625740123785157"><b>Get it on Figma</b></a> ·
-  <a href="#quick-start">Quick start</a> ·
-  <a href="#using-it">Using it</a> ·
-  <a href="#how-it-works">How it works</a> ·
-  <a href="docs/demo.mp4">Demo video</a> ·
-  <a href="https://github.com/kevicebryan/open-htmltofigma">★ Star the repo</a>
+  <b>Turn any local HTML/CSS file, web snippet, or AI output into native, pixel-accurate, fully editable Figma layers & components.</b><br />
+  Includes dedicated presets for <b>Landscape (16:9)</b> and <b>Portrait (9:16)</b> video screens.<br />
+  100% Client-Side · Zero URL tracking · Zero subscriptions · Open Source (MIT)
 </p>
 
 <p align="center">
-  <a href="docs/demo.mp4"><img src="docs/demo.webp" alt="Dropping an HTML file into the plugin and getting editable Figma layers" width="100%" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" /></a>
+  <a href="https://www.figma.com/plugin-docs/"><img src="https://img.shields.io/badge/Figma-Plugin_API_v1-F24E1E?logo=figma&logoColor=white" alt="Figma Plugin API" /></a>
+  <img src="https://img.shields.io/badge/Privacy-100%25_Client--Side-brightgreen.svg" alt="100% Client-Side" />
+  <img src="https://img.shields.io/badge/TypeScript-5.7+-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/PRs-welcome-green.svg" alt="PRs Welcome" />
 </p>
-
-## Browser in, Figma layers out
-
-The browser does the layout. The plugin measures the rendered page and rebuilds it as nested Frames, rich-text layers, vectors and image fills, so you can keep designing instead of redrawing.
 
 <p align="center">
-  <img src="docs/result.png" alt="examples/kitchen-sink.html in the browser next to the same page imported into Figma" width="100%" />
+  <a href="#key-features">Key Features</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#viewport-presets">Viewport Presets</a> ·
+  <a href="#how-it-works">How It Works</a> ·
+  <a href="#privacy--security">Privacy</a> ·
+  <a href="#contributing">Contributing</a>
 </p>
-<p align="center"><em><a href="examples/kitchen-sink.html"><code>examples/kitchen-sink.html</code></a> in Chrome (left) and after import (right): 185 editable layers.</em></p>
 
-## Quick start
+---
 
-**Install it** from the [Figma Community](https://www.figma.com/community/plugin/1686625740123785157), then run **Open HTML to Figma** from the Plugins menu in any design file.
+## ⚡ Key Features
 
-**Or build it from source.** Needs [Figma desktop](https://www.figma.com/downloads/) and Node 18+.
+- **Pixel-Accurate DOM Capture:** The browser layout engine does the heavy lifting. The plugin measures the rendered DOM and translates boxes, text runs, SVGs, and images into native Figma frames and layers.
+- **Video Screen Creation Workflows:** Dedicated 1-click presets for **Landscape** (`1920 × 1080` for YouTube, TV & Desktop) and **Portrait** (`1080 × 1920` for Shorts, Reels, TikTok & Mobile Stories).
+- **GitHub Dark DevTools Design System:** Clean, distraction-free interface built using GitHub Primer dark palette (`#0d1117`, commit green `#238636`, and `#30363d` borders).
+- **AI Prompt Assistant:** Built-in "Copy AI prompt" button generates prompt templates for Claude, ChatGPT, and v0 so LLMs output clean, self-contained HTML formatted for your exact viewport.
+- **Component & Style Generation:** Converts the root frame into a reusable Figma Component at the flick of a switch. Automatically groups up to 40 primary colors into a linked `TopicMentor/` style palette.
+- **Local Assets & Folders Support:** Pick standalone `.html` files or point to entire project directories with local images, stylesheets, and custom web fonts.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Build
+
+Requirements: [Node.js 18+](https://nodejs.org/) and the [Figma Desktop App](https://www.figma.com/downloads/).
 
 ```bash
-git clone https://github.com/kevicebryan/open-htmltofigma.git
-cd open-htmltofigma
-npm install && npm run build
+# Clone the repository
+git clone https://github.com/your-username/topicmentor-html-to-figma.git
+cd topicmentor-html-to-figma
+
+# Install dependencies and compile TypeScript
+npm install
+npm run build
 ```
 
-1. In Figma: **Plugins → Development → Import plugin from manifest…** and pick `manifest.json`
-2. Run **Open HTML to Figma**, pick a viewport, add your HTML, then **Import to Figma**
+### 2. Load into Figma Desktop
 
-## Using it
+1. Open the **Figma Desktop App** and open any design draft.
+2. Click the Figma menu (☰) in the top-left → **Plugins** → **Development** → **Import plugin from manifest…**
+3. Select `manifest.json` from this repository.
+4. Run **TopicMentor HTML to Figma — Pro Dev Tools** from your Development plugins menu.
 
-<p align="center">
-  <img src="docs/states.png" alt="The plugin UI while ready, importing, done and on error" width="100%" />
-</p>
-
-| Step | What to do |
-| --- | --- |
-| **Viewport** | Desktop (1440 × 1024), Laptop (1280 × 832), Tablet (768 × 1024), Mobile (390 × 844), Slide (1920 × 1080), A4 (794 × 1123) or Letter (816 × 1056), or type any size. Media queries and `vh` units resolve against it. |
-| **File** | Choose an `.html` file. If it uses local CSS, images or fonts, select them together with the page, or use **or pick its folder**, so relative `href` / `src` / `url()` references resolve. |
-| **Or paste** | Paste HTML straight into the text box. A code block copied from the chat, fence and all, works too. React components can't be imported; the plugin says so and points you to **Copy AI prompt**. |
-| **Copy AI prompt** | Copies a request to add to your AI chat, so it answers with one self-contained HTML file laid out for the size you picked. |
-| **Create as component** | The imported root becomes a Component instead of a Frame. |
-| **Execute page scripts** | For JS-rendered pages (Tailwind Play CDN, content built by a `<script>`). Entrance and scroll-reveal animations are settled before measuring. Off by default; only enable it for HTML you trust. |
-
-The plugin remembers your viewport and **Create as component** between runs. **Execute page scripts** always starts off.
-
-The import lands in the middle of your viewport, selected and zoomed to fit. It is named `HTML Import · 1440px` (or `HTML Component · …`). Its 40 most-used colors become local color styles under `HTML/`, linked to every layer that uses them, so editing one style recolors the whole import.
-
-**Closer match:** import at the viewport you design at, and install the page's fonts in Figma. Fonts Figma doesn't have are substituted and listed after the import.
-
-## What you get
-
-| HTML | Figma |
-| --- | --- |
-| Flex / grid / absolute layout, `vh` units | Nested Frames at the measured positions |
-| Paragraphs with `<b>`, `<i>`, links, inline `<code>` | One editable rich-text layer each, same line breaks as the browser |
-| Solid, linear, radial and `background-clip: text` gradients | Native fills |
-| Per-side borders, per-corner radii, shadows, rings, `blur()`, `backdrop-filter` | Strokes, corner radii and effects |
-| Inline SVG, `<use>` sprites, `<img src="*.svg">` | Vector layers |
-| Images, `background-image`, `<canvas>` charts | Image fills cropped like `object-fit` / `background-size` |
-| `::before` / `::after`, list markers, form controls, `rotate()` | Matching layers |
-
-Try the pages in [`examples/`](examples/): `kitchen-sink.html` covers most features, and `tailwind-cdn.html` needs **Execute page scripts**.
-
-## How it works
-
-```
-HTML → isolated browser render at your viewport → measure the DOM → Frames / Text / vectors / images in Figma
-```
-
-1. The plugin UI ([`ui.html`](ui.html)) renders your page in a sandboxed iframe sized like a real window, waits for fonts and images, and settles animations.
-2. It walks the DOM and records each box's geometry, paints, borders, radii, shadows and text runs, including where the browser broke lines.
-3. The main thread ([`code.ts`](code.ts)) resolves fonts and rebuilds the tree as Figma nodes with the same positions.
-
-Positions are absolute, straight from the browser's layout, instead of being rewritten as Auto Layout. That's intentional: it keeps the import visually identical. More detail in [ARCHITECTURE.md](ARCHITECTURE.md).
-
-## Privacy
-
-- Everything runs inside Figma: there is no backend, account, analytics or tracking, and the plugin stores nothing.
-- The only network requests are the ones your page makes while it renders (its stylesheets, scripts, fonts and images). Nothing from your Figma file is sent anywhere.
-- The plugin UI itself makes no requests; its typeface is bundled.
-- `manifest.json` allows every domain only because pages can reference any CDN.
-
-## Limits
-
-Missing fonts are substituted, and Figma's copy of a web font can be slightly wider or narrower (optical sizes); line breaks are kept either way. Skew, 3D transforms, `clip-path` and masks keep the measured box, not the effect. Conic / repeating gradients and HTML inside SVG become images. Cross-origin iframes are placeholders.
-
-## Development
-
-| Path | What it is |
-| --- | --- |
-| [`ui.html`](ui.html) | Plugin UI: file handling, the isolated render, DOM capture and asset rasterizing |
-| [`code.ts`](code.ts) | Figma main thread: builds nodes from the captured tree. `npm run build` compiles it to `code.js` |
-| [`manifest.json`](manifest.json) | Plugin entry points and network access |
-| [`test/check.html`](test/check.html) | Runs the real capture on `examples/kitchen-sink.html` and asserts the tree |
-| [`docs/`](docs/) | Logo, icon and promo images; `promo.html`, `demo.html` and `record.mjs` regenerate them |
-
+*(Optional)* Run the TypeScript compiler in watch mode during development:
 ```bash
-npm run watch                      # rebuild code.js on change
-python3 -m http.server 8765        # then open http://localhost:8765/test/check.html
-node docs/record.mjs               # re-record docs/demo.mp4 (needs Chrome + ffmpeg, server running)
+npm run watch
 ```
 
-After changing the capture, run `test/check.html`, then import the files in `examples/` in Figma desktop.
+---
 
-## License
+## 📐 Viewport Presets
 
-MIT, see [LICENSE](LICENSE). Brewed by [Kevin](https://www.linkedin.com/in/bryan-kevin/).
+The plugin provides instant segmented viewports optimized for digital design and social video screens:
+
+| Preset | Dimensions | Aspect Ratio | Primary Use Case |
+| :--- | :--- | :--- | :--- |
+| **Desktop** | `1440 × 1024 px` | ~1.4:1 | Standard Web & Dashboard layouts |
+| **Laptop** | `1280 × 832 px` | ~1.5:1 | Compact laptops & MacBook Air displays |
+| **Tablet** | `768 × 1024 px` | 3:4 | iPad / Tablet portrait apps |
+| **Mobile** | `390 × 844 px` | ~9:19.5 | Modern smartphones (iPhone 14/15/16) |
+| **Landscape** | `1920 × 1080 px` | **16:9** | **Full HD Video, YouTube, Presentation Slides** |
+| **Portrait** | `1080 × 1920 px` | **9:16** | **Vertical Video, Shorts, Reels, TikTok, Stories** |
+| **Letter** | `816 × 1056 px` | Print | US Letter documents (96 DPI) |
+| **Custom** | `100` – `4000 px` | Flexible | User-defined custom dimensions |
+
+---
+
+## 🔍 How It Works
+
+```
+HTML/CSS Input
+   │
+   ▼
+Sandboxed Browser Render (ui.html iframe)
+   │  • Resolves web fonts & remote images
+   │  • Executes CSS Grid / Flexbox calculations
+   ▼
+DOM Measurement Engine
+   │  • Walks the DOM tree & computes absolute bounding boxes
+   │  • Extracts text runs, line breaks, gradients, shadows & SVGs
+   ▼
+Figma SceneNode Builder (code.ts)
+   │  • Maps boxes to native FrameNodes and ComponentNodes
+   │  • Loads local/system fonts & links TopicMentor/ color styles
+   ▼
+Pixel-Perfect Figma Canvas Layers
+```
+
+1. **Sandboxed Render:** The plugin UI ([`ui.html`](ui.html)) renders HTML inside an isolated iframe at your target viewport width and height.
+2. **Measurement:** It inspects computed styles, geometry, padding, borders, corner radii, and text line breaks.
+3. **Figma Construction:** The main thread ([`code.ts`](code.ts)) maps geometry directly into Figma scene nodes, maintaining absolute positioning for visual parity.
+
+---
+
+## 🔒 Privacy & Security
+
+- **100% Client-Side:** Everything runs locally within your Figma sandbox. No third-party servers, backends, accounts, analytics, or trackers are used.
+- **No Data Exfiltration:** Your designs and code never leave your machine.
+- **Network Permissions:** `manifest.json` requests wildcard network access exclusively so the browser render engine can load web fonts (like Google Fonts) and CDN images referenced in your HTML.
+
+---
+
+## 📁 Repository Structure
+
+```
+├── manifest.json       # Figma plugin manifest schema
+├── code.ts             # Figma main thread TypeScript source
+├── code.js             # Compiled JavaScript bundle for Figma
+├── ui.html             # Plugin user interface, sandboxed DOM parser & CSS
+├── tsconfig.json       # TypeScript configuration
+├── package.json        # Project metadata & build scripts
+├── test/               # Automated test suite (check.html)
+├── examples/           # Sample HTML test cases (kitchen-sink, tailwind, etc.)
+└── docs/               # Visual assets, branding & documentation media
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, and feature requests are welcome!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+3. Commit your Changes (`git commit -m 'Add amazing feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+
+Maintained by **TopicMentor**.
